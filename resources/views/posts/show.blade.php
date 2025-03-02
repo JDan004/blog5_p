@@ -13,4 +13,16 @@
         {{$post->content}}
     </p>
 
+    <a href="{{route('posts.edit', $post)}}">Editar post</a>
+
+    <form action="{{route('posts.destroy', $post)}}" method="POST">
+        
+        @csrf
+        @method('DELETE')
+
+        <br>
+ 
+        <button type="submit">Borrar post</button>
+    </form>
+
 </x-app-layout>

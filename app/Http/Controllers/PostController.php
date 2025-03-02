@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redis;
 
 class PostController extends Controller
 {
@@ -33,15 +34,23 @@ class PostController extends Controller
         return view('posts.show', compact('post'));
     }
 
-    public function edit(){
-
+    public function edit(Post $post){
+        return view('posts.edit', compact('post'));
     }
 
-    public function update(){
-
-    }
-
-    public function destroy(){
+    public function update(Post $post, Request $request){
         
+        $post->title = $request->title;
+        $post->category = $request->category;
+        $post->content = $request->content;
+
+        $post->save();
+
+        return redirect()->route('posts.show', $post);
+    }
+
+    public function destroy(Post $post){
+        $post->delete();
+        return redirect()->route('posts.index');
     }
 }

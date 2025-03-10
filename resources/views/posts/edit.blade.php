@@ -24,6 +24,14 @@
         <br>
 
         <label>
+            Slug:
+            <input type="text" name="slug" value="{{$post->slug}}">
+        </label>
+
+        <br>
+        <br>
+
+        <label>
             Contenido:
             <textarea name="content">{{$post->content}}</textarea>
         </label>

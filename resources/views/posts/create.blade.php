@@ -23,6 +23,14 @@
         <br>
 
         <label>
+            Slug:
+            <input type="text" name="slug">
+        </label>
+
+        <br>
+        <br>
+        
+        <label>
             Contenido:
             <textarea name="content"></textarea>
         </label>

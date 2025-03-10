@@ -15,4 +15,9 @@ class Post extends Model
             'is_active' => 'boolean'
         ];
     }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 }

@@ -23,6 +23,7 @@ class PostController extends Controller
 
         $post->title = $request->title;
         $post->category = $request->category;
+        $post->slug = $request->slug;
         $post->content = $request->content;
 
         $post->save();
@@ -42,6 +43,7 @@ class PostController extends Controller
         
         $post->title = $request->title;
         $post->category = $request->category;
+        $post->slug = $request->slug;
         $post->content = $request->content;
 
         $post->save();

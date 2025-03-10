@@ -19,6 +19,7 @@ class PostFactory extends Factory
         return [
             'title' => fake()->word(),
             'category' => fake()->sentence(),
+            'slug' => fake()->slug(),
             'content' => fake()->text(1000),
             'published_at' => fake()->dateTime(),
             'is_active' => fake()->boolean()

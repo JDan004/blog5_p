@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StorePostRequest;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redis;
@@ -17,9 +18,9 @@ class PostController extends Controller
         return view('posts.create');
     }
 
-    public function store(Request $request){
+    public function store(StorePostRequest $request){
         
-        Post::create($request->all());
+        Post::create($request->validated());
 
         return redirect()->route('posts.index');
     }
@@ -33,6 +34,13 @@ class PostController extends Controller
     }
 
     public function update(Post $post, Request $request){
+        
+        $request->validate([
+            'title' => 'min:5|max:254|required',
+            'category' => 'required',
+            'slug' => "required|unique:posts,slug,{$post->id}",
+            'content' => 'required'
+        ]);
         
         $post->update($request->all());
 

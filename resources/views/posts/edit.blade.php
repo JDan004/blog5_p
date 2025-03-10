@@ -2,6 +2,19 @@
 
     <h1>Formulario para editar un post</h1>
 
+    @if ($errors->any())
+        <div>
+            <h2>Errores:</h2>
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>
+                        {{$error}}
+                    </li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     <form action="{{route('posts.update', $post)}}" method="POST">
 
         @csrf
@@ -9,7 +22,7 @@
 
         <label>
             Título:
-            <input type="text" name="title" value="{{$post->title}}">
+            <input type="text" name="title" value="{{old('title', $post->title)}}">
         </label>
 
         <br>
@@ -17,7 +30,7 @@
 
         <label>
             Categoría:
-            <input type="text" name="category" value="{{$post->category}}">
+            <input type="text" name="category" value="{{old('category', $post->category)}}">
         </label>
 
         <br>
@@ -25,7 +38,7 @@
 
         <label>
             Slug:
-            <input type="text" name="slug" value="{{$post->slug}}">
+            <input type="text" name="slug" value="{{old('slug', $post->slug)}}">
         </label>
 
         <br>
@@ -33,7 +46,7 @@
 
         <label>
             Contenido:
-            <textarea name="content">{{$post->content}}</textarea>
+            <textarea name="content">{{old('content', $post->content)}}</textarea>
         </label>
 
         <br>
